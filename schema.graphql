@@ -1,28 +1,36 @@
-type Country {
-        id: ID!
-        name: String! @search(by: [trigram, hash])
+interface Word {
+  id: ID!
+  tongue: Tongue @search
 }
-type Author {
-        id: ID!
-        name: String! @search(by: [hash, trigram])
-        dob: DateTime @search
-        reputation: Float @search
-        country: Country
-        posts: [Post!] @hasInverse(field: author)
+type FourLetterWord implements Word {
+  word: String! @search(by: [term])
+  s_points: Int @search
+  f_points: Int @search
+  tier: Int @search
+  definition: String @search(by: [fulltext])
 }
-type Post {
-        postID: ID!
-        title: String! @search(by: [term, fulltext])
-        text: String @search(by: [fulltext])
-        tags: [String] @search(by: [exact])
-        topic: String @search(by: [exact])
-        numLikes: Int @search
-        isPublished: Boolean @search
-        postType: PostType @search
-        author: Author! @hasInverse(field: posts)
+type PrefixSuffixRoot implements Word  {
+  affix: [String!]! @search(by: [term])
+  meaning: [String!]! @search(by: [term])
+  examples: [String!]! @search(by: [term])
+  affixType: AffixType! @search
 }
-enum PostType {
-        Fact
-        Question
-        Opinion
+type Verbo implements Word  {
+  spanish: String @search(by: [trigram, hash])
+  english: String @search(by: [trigram, hash])
+  reflexive: Boolean @search
+  irregular: Boolean @search
+  categoria_de_irregular: String
+  cambiar_de_irregular: String
+  terminacion: String
+  grupo: Float @search
+}
+enum AffixType {
+  Prefix
+  Suffix
+  Root
+}
+enum Tongue {
+  English
+  Spanish
 }
