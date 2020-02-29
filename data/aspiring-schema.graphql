@@ -1,0 +1,43 @@
+interface Word {
+  id: ID!
+  tongue: Tongue @search
+}
+interface Entity {
+  id: ID!
+  thingName: String @search(by: [trigram, hash])
+  food: Boolean @search
+  danger: Boolean @search
+}
+type User implements Entity {
+  username: String @search(by: [hash])
+  email: String! @search(by: [term])
+}
+type FourLetterWord implements Word {
+  word: String! @search(by: [term])
+  s_points: Int @search
+  f_points: Int @search
+  tier: Int @search
+  definition: String @search(by: [fulltext])
+}
+type PrefixSuffixRoot implements Word {
+  affix: [String!]! @search(by: [term])
+  meaning: [String!]! @search(by: [term])
+  examples: [String!]! @search(by: [term])
+  affixType: AffixType! @search
+}
+type Verbs implements Word {
+  spanish: String @search(by: [trigram, hash])
+  english: String @search(by: [trigram, hash])
+  reflexive: Boolean @search
+  irregular: Boolean @search
+  grupo: Float @search
+}
+enum AffixType {
+  Prefix
+  Suffix
+  Root
+}
+enum Tongue {
+  English
+  Spanish
+}
