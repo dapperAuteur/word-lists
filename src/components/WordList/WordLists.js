@@ -27,7 +27,7 @@ export default function WordLists(props) {
     params = queryString.parse(props.location.search)
     search = params.search
   }
-  // let query = GET_FILTERED_VERBOS
+  let query = GET_ALL_VERBOS
   if (search === "") {
     query = GET_ALL_VERBOS
   }

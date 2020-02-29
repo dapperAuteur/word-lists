@@ -14,7 +14,7 @@ export default function App() {
       <Header />
 
       <Switch>
-        <Route exact path="/" component={PostList} />
+        <Route exact path="/" component={WordLists} />
         <Route exact path="/create" component={CreatePost} />
         <Route exact path="/view" component={PostView} />
         <Route exact path="/edit" component={EditPost} />
