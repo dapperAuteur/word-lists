@@ -4,6 +4,7 @@ interface Word {
 }
 type FourLetterWord implements Word {
   word: String! @search(by: [term])
+  in_game: Boolean @search
   s_points: Int @search
   f_points: Int @search
   tier: Int @search

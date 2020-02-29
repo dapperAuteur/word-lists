@@ -1,6 +1,7 @@
 import React from "react";
 
-import PostList from "./PostList";
+// import PostList from "./PostList";
+import WordLists from "./WordList/WordLists"
 import Header from "./Header";
 import PostView from "./ViewPost";
 import CreatePost from "./CreatePost";
