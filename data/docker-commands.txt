@@ -1,0 +1,5 @@
+save data bw kills
+docker run -it -p 8080:8080 -v $(pwd)/mnt/dgraph:/dgraph dgraph/standalone:v2.0.0-beta
+
+do not save bw kills
+docker run -it -p 8080:8080 -p 8000:8000 dgraph/standalone:v2.0.0-beta
